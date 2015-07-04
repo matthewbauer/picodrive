@@ -1,5 +1,9 @@
 # Makefile for PicoDrive (libretro)
 
+ifneq ($(EMSCRIPTEN),)
+	platform = emscripten
+endif
+
 ifeq ($(platform),)
 platform = unix
 ifeq ($(shell uname -a),)
@@ -75,7 +79,7 @@ endif
    CC = clang -arch armv7 -isysroot $(IOSSDK)
    CXX = clang++ -arch armv7 -isysroot $(IOSSDK)
    CC_AS = perl ./tools/gas-preprocessor.pl $(CC)
-   CFLAGS += -mcpu=cortex-a8 -mtune=cortex-a8 -mfpu=neon -marm 
+   CFLAGS += -mcpu=cortex-a8 -mtune=cortex-a8 -mfpu=neon -marm
    ASFLAGS += -mcpu=cortex-a8 -mtune=cortex-a8 -mfpu=neon
    CFLAGS += -DIOS
    OSXVER = `sw_vers -productVersion | cut -d. -f 2`
@@ -144,7 +148,7 @@ else ifeq ($(platform), psl1ght)
 	STATIC_LINKING = 1
 	NO_MMAP = 1
 	DONT_COMPILE_IN_ZLIB = 1
-	
+
 	asm_memory = 0
 	asm_render = 0
 	asm_ym2612 = 0
@@ -226,6 +230,9 @@ ifneq (,$(findstring armasm,$(platform)))
    ARM_ASM = 1
 endif
    ARCH = arm
+# emscripten
+else ifeq ($(platform), emscripten)
+	TARGET := $(TARGET_NAME)_libretro_emscripten.bc
 else
    TARGET := $(TARGET_NAME)_libretro.dll
    CC = gcc

@@ -1,5 +1,5 @@
 TARGET ?= PicoDrive
-CFLAGS += -Wall -ggdb -falign-functions=2
+CFLAGS += -Wall -falign-functions=2
 CFLAGS += -I. -DINLINE=inline
 ifndef DEBUG
 CFLAGS += -O2 -DNDEBUG -ffunction-sections
@@ -85,31 +85,31 @@ platform/common/menu_pico.o: CFLAGS += -DPANDORA
 platform/libpicofe/linux/plat.o: CFLAGS += -DPANDORA
 OBJS += platform/pandora/plat.o
 OBJS += platform/pandora/asm_utils.o
-OBJS += platform/common/arm_utils.o 
-OBJS += platform/libpicofe/linux/fbdev.o 
+OBJS += platform/common/arm_utils.o
+OBJS += platform/libpicofe/linux/fbdev.o
 OBJS += platform/libpicofe/linux/xenv.o
 OBJS += platform/libpicofe/pandora/plat.o
 USE_FRONTEND = 1
 endif
 ifeq "$(PLATFORM)" "gp2x"
-OBJS += platform/common/arm_utils.o 
+OBJS += platform/common/arm_utils.o
 OBJS += platform/libpicofe/gp2x/in_gp2x.o
-OBJS += platform/libpicofe/gp2x/soc.o 
-OBJS += platform/libpicofe/gp2x/soc_mmsp2.o 
-OBJS += platform/libpicofe/gp2x/soc_pollux.o 
-OBJS += platform/libpicofe/gp2x/plat.o 
-OBJS += platform/libpicofe/gp2x/pollux_set.o 
-OBJS += platform/gp2x/940ctl.o 
-OBJS += platform/gp2x/plat.o 
-OBJS += platform/gp2x/emu.o 
-OBJS += platform/gp2x/vid_mmsp2.o 
-OBJS += platform/gp2x/vid_pollux.o 
-OBJS += platform/gp2x/warm.o 
+OBJS += platform/libpicofe/gp2x/soc.o
+OBJS += platform/libpicofe/gp2x/soc_mmsp2.o
+OBJS += platform/libpicofe/gp2x/soc_pollux.o
+OBJS += platform/libpicofe/gp2x/plat.o
+OBJS += platform/libpicofe/gp2x/pollux_set.o
+OBJS += platform/gp2x/940ctl.o
+OBJS += platform/gp2x/plat.o
+OBJS += platform/gp2x/emu.o
+OBJS += platform/gp2x/vid_mmsp2.o
+OBJS += platform/gp2x/vid_pollux.o
+OBJS += platform/gp2x/warm.o
 USE_FRONTEND = 1
 PLATFORM_MP3 = 1
 endif
 ifeq "$(PLATFORM)" "libretro"
-OBJS += platform/libretro/libretro.o 
+OBJS += platform/libretro/libretro.o
 endif
 
 ifeq "$(USE_FRONTEND)" "1"
