@@ -19,3 +19,7 @@ obj/
 .opk_data
 PicoDrive
 PicoDrive.opk
+*.js
+*.bc
+package.json
+.npmignore
