@@ -267,4 +267,4 @@ LDFLAGS += $(SHARED)
 PLATFORM = libretro
 NO_CONFIG_MAK = yes
 
-include Makefile
+include Makefile.common
